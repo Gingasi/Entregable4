@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorManager : MonoBehaviour
+public class colormanager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,17 +15,30 @@ public class ColorManager : MonoBehaviour
     {
         
     }
-    public Color RandomColor();
+    public Color RandomColor()
+    {
+        return new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+    } 
+    
      
-    RandomScale = new Color(Random.Range(0f, 2f) , Random.Range(0f, 2f) , Random.Range(0f, 2f));
+    public Vector3 RandomScale()
+    {
+        return new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+    }
      
-    public Vector3 RandomScale();
-     
-     RandomScale = new Vector3(x:(-1f, 2f), y:(-1f, 2f), z:(-1f, 2f));
      
     
-    public Vector3 RandomPosition();
+    public Vector3 RandomPosition()
+    {
+        return new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0);
+    }
      
-     RandomPosition = new Vector3(x:(-5f, 6f), y:(-5f, 6f), z:(-5f, 6f));
-       
+
+        private void OnMouseDown()
+    {
+        GetComponent<MeshRenderer>().material.color = RandomColor();
+        transform.localScale = RandomScale();
+        transform.position = RandomPosition();
+    }
+    
 }
